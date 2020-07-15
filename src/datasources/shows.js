@@ -12,8 +12,8 @@ class ShowAPI extends RESTDataSource {
             name: show.name,
             genres: show.genres,
             premiered: show.premiered,
-            medium: show.image.medium,
-            original: show.image.original,
+            medium:  show.image != null ? show.image.medium : null,
+            original: show.image != null ? show.image.original : null,
             rating: show.rating.average,
             summary: show.summary
         }
@@ -24,9 +24,22 @@ class ShowAPI extends RESTDataSource {
         return Array.isArray(response) ? response.map(show => this.showReducer(show)) : [];
     }
 
-    async getShowsByName({name}) {
+    async getShowsByName({ name }) {
         const response = await this.get(`/search/shows?q=${name}`);
-        return Array.isArray(response) ? response.map(show => this.showReducer(show.show)) : []; 
+        return Array.isArray(response) ? response.map(show => this.showReducer(show.show)) : [];
+    }
+
+    async getShowById({ showId }) {
+        const response = await this.get(`shows/${showId}`);
+        return this.showReducer(response);
+    }
+
+    getFavorites({ showIds }) {
+        return Promise.all(showIds.map(showId => this.getShowById({ showId })));
+    }
+
+    getScheduled({ showIds }) {
+        return Promise.all(showIds.map(showId => this.getShowById({ showId })));
     }
 }
 

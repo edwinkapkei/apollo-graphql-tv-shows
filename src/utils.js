@@ -51,5 +51,5 @@ module.exports.createStore = () => {
     userId: SQL.INTEGER,
     showId: SQL.INTEGER,
   })
-  return { users, favorites,schedule };
+  return { users, favorites, schedule };
 };

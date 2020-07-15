@@ -2,7 +2,7 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
 type Show {
-    id: ID!
+    id: Int!
     name: String
     genres: [String]
     premiered: String
@@ -19,19 +19,19 @@ type Crew {
 }
 
 type Person {
-    id: ID!
+    id: Int!
     name: String
     image(size: PosterSize): String
 }
 
 type Seasons {
-    id: ID!
+    id: Int!
     number: Int
     episodes: Int
 }
 
 type User {
-    id: ID!
+    id: Int!
     email: String!
     password: String!
     favorites: [Show]
@@ -46,14 +46,15 @@ enum PosterSize {
 type Query {
     shows: [Show]!
     search(name: String!): [Show]!
-    favorites(showIds: [ID]!): [Show]!
-    schedule(showIds: [ID]!): [Show]!
+    show(showId: Int!): Show
+    favorites(showIds: [Int]!): [Show]
+    schedule(showIds: [Int]!): [Show]
     me: User
 }
 
 type Mutation {
-    favorite(showId: ID!): ShowUpdateResponse!
-    schedule(showId: ID!): ShowUpdateResponse!
+    favorite(showId: Int!): ShowUpdateResponse!
+    schedule(showId: Int!): ShowUpdateResponse!
     login(email: String, password: String): String
 }
 
