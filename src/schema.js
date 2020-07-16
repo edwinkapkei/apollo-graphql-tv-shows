@@ -44,11 +44,12 @@ enum PosterSize {
 }
 
 type Query {
-    shows: [Show]!
+    shows(page: Int!): [Show]!
     search(name: String!): [Show]!
     show(showId: Int!): Show
     favorites(showIds: [Int]!): [Show]
     schedule(showIds: [Int]!): [Show]
+    allDetails: [Show]!
     me: User
 }
 
