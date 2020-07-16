@@ -2,7 +2,7 @@
 Apollo graphql implementation with TV Maze APIs
 
 
-This project works in tandem with the following repositories
+This project works in tandem with the following repositories:
 <dl>
 	<dt><a href="https://github.com/edwinkapkei/tv-shows-php-implementation" target="_blank">PHP Backend</a></dt>
 	<dd>Manages user authentication and tracks the shows the user favorites or adds to their schedule</dd>
@@ -11,7 +11,7 @@ This project works in tandem with the following repositories
 	</br>
 </dl><br>
 <dd>Every resource is offline with the exception of TVMaze APIs so in order to run the whole project kindly clone the three repositories.</dd>
-<dd>The main things to take into consideration is the different URLs required for the platforms to interact</dd>
+<dd>The main thing to take into consideration is the different URLs required for the platforms to interact:</dd>
 <dl>
     <dt><a href="https://github.com/edwinkapkei/apollo-graphql-tv-shows/tree/master/src/datasources">Data sources urls</a></dt>
     <dd>The URLs on the two files define the source of the data(TVMaze or localhost)</dd>
