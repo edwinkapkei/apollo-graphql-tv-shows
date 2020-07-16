@@ -109,7 +109,25 @@ class UserAPI extends RESTDataSource {
             },
             body: JSON.stringify(data)
         }).then(res => res.json()).then(json => response = json);
-        return response.message;
+        return response.data.comment;
+    }
+
+    async getShowStatus({ userId, showId }) {
+        const data = { user_id: userId, show_id: showId }
+        var response = null
+        await fetch(this.baseURL + "get_show_status.php", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        }).then(res => res.json()).then(json => response = json);
+        return {
+            success: response.status == 1,
+            message: response.message,
+            favorite: response.favorite,
+            scheduled: response.scheduled
+        };
     }
 }
 

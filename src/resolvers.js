@@ -5,17 +5,16 @@ module.exports = {
         show: (_, { showId }, { dataSources }) => dataSources.showAPI.getShowById({ showId: showId }),
         favorites: async (_, { userId }, { dataSources }) => {
             const showIds = await dataSources.userAPI.getFavorites({ userId })
-            console.log(showIds)
             const shows = await dataSources.showAPI.getFavorites({ showIds })
             return shows
         },
         schedule: async (_, { userId }, { dataSources }) => {
             const showIds = await dataSources.userAPI.getSchedule({ userId })
-            console.log(showIds)
             const shows = await dataSources.showAPI.getScheduled({ showIds })
             return shows
         },
-        comment: (_, { userId, showId }, { dataSources }) => dataSources.userAPI.getComment({ userId: userId, showId: showId })
+        comment: (_, { userId, showId }, { dataSources }) => dataSources.userAPI.getComment({ userId: userId, showId: showId }),
+        checkShowStatus: (_, { userId, showId }, { dataSources }) => dataSources.userAPI.getShowStatus({ userId: userId, showId: showId })
     },
 
     Mutation: {

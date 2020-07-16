@@ -54,6 +54,7 @@ type Query {
     favorites(userId: String!): [Show]
     schedule(userId: String!): [Show]
     comment(userId: String!,showId: String!): Comment
+    checkShowStatus(userId: String!,showId: String!): ShowStatus!
     allDetails: [Show]!
     me: User
 }
@@ -70,6 +71,13 @@ type ShowUpdateResponse{
     success: Boolean!
     message: String
     show: Show
+}
+
+type ShowStatus{
+    success: Boolean!
+    message: String
+    favorite: Boolean!
+    scheduled: Boolean!
 }
 
 type AuthResponse{
