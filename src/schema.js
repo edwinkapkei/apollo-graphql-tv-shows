@@ -54,9 +54,11 @@ type Query {
 }
 
 type Mutation {
-    favorite(showId: Int!): ShowUpdateResponse!
-    schedule(showId: Int!): ShowUpdateResponse!
-    login(email: String, password: String): String
+    signup(name: String!, email: String!, password: String!): AuthResponse!
+    login(email: String!, password: String!): AuthResponse!
+    addFavorite(userId: String!, showId: String!): AuthResponse!
+    addSchedule(userId: String!, showId: String!): AuthResponse!
+    addComment(userId: String!, showId: String!, comment: String!): AuthResponse!
 }
 
 type ShowUpdateResponse{
@@ -64,6 +66,12 @@ type ShowUpdateResponse{
     message: String
     show: Show
 }
-`;
 
+type AuthResponse{
+    success: Boolean!
+    message: String
+    id: String
+}
+`;
+//login(email: String, password: String): String
 module.exports = typeDefs;
