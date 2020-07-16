@@ -34,8 +34,8 @@ class UserAPI extends RESTDataSource {
         return response;
     }
 
-    async addFavorite({ userId, showId }) {
-        const data = { user_id: userId, show_id: showId }
+    async addFavorite({ userId, showId, addToFavorites }) {
+        const data = { user_id: userId, show_id: showId, addToFavorites: addToFavorites }
         var response = null
         await fetch(this.baseURL + "add_favorite.php", {
             method: 'POST',
@@ -47,8 +47,8 @@ class UserAPI extends RESTDataSource {
         return response;
     }
 
-    async addSchedule({ userId, showId }) {
-        const data = { user_id: userId, show_id: showId }
+    async addSchedule({ userId, showId, addToSchedule }) {
+        const data = { user_id: userId, show_id: showId, addToSchedule: addToSchedule }
         var response = null
         await fetch(this.baseURL + "add_schedule.php", {
             method: 'POST',
@@ -61,7 +61,7 @@ class UserAPI extends RESTDataSource {
     }
 
     async addComment({ userId, showId, comment }) {
-        const data = { user_id: userId, show_id: showId ,comment: comment}
+        const data = { user_id: userId, show_id: showId, comment: comment }
         var response = null
         await fetch(this.baseURL + "add_comment.php", {
             method: 'POST',
@@ -71,6 +71,45 @@ class UserAPI extends RESTDataSource {
             body: JSON.stringify(data)
         }).then(res => res.json()).then(json => response = json);
         return response;
+    }
+
+    async getFavorites({ userId }) {
+        const data = { user_id: userId }
+        var response = null
+        await fetch(this.baseURL + "get_favorites.php", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        }).then(res => res.json()).then(json => response = json);
+        return response.data;
+    }
+
+    async getSchedule({ userId }) {
+        const data = { user_id: userId }
+        var response = null
+        await fetch(this.baseURL + "get_schedule.php", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        }).then(res => res.json()).then(json => response = json);
+        return response.data;
+    }
+
+    async getComment({ userId, showId }) {
+        const data = { user_id: userId, show_id: showId }
+        var response = null
+        await fetch(this.baseURL + "get_comment.php", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        }).then(res => res.json()).then(json => response = json);
+        return response.message;
     }
 }
 

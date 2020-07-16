@@ -38,6 +38,10 @@ type User {
     schedule: [Show]
 }
 
+type Comment{
+    comment: String
+}
+
 enum PosterSize {
     MEDIUM
     ORIGINAL
@@ -47,8 +51,9 @@ type Query {
     shows(page: Int!): [Show]!
     search(name: String!): [Show]!
     show(showId: Int!): Show
-    favorites(showIds: [Int]!): [Show]
-    schedule(showIds: [Int]!): [Show]
+    favorites(userId: String!): [Show]
+    schedule(userId: String!): [Show]
+    comment(userId: String!,showId: String!): Comment
     allDetails: [Show]!
     me: User
 }
@@ -56,8 +61,8 @@ type Query {
 type Mutation {
     signup(name: String!, email: String!, password: String!): AuthResponse!
     login(email: String!, password: String!): AuthResponse!
-    addFavorite(userId: String!, showId: String!): AuthResponse!
-    addSchedule(userId: String!, showId: String!): AuthResponse!
+    addFavorite(userId: String!, showId: String!, addToFavorites: Boolean!): AuthResponse!
+    addSchedule(userId: String!, showId: String!, addToSchedule: Boolean!): AuthResponse!
     addComment(userId: String!, showId: String!, comment: String!): AuthResponse!
 }
 
@@ -71,6 +76,7 @@ type AuthResponse{
     success: Boolean!
     message: String
     id: String
+    flag: Boolean!
 }
 `;
 //login(email: String, password: String): String
