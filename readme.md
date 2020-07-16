@@ -9,7 +9,7 @@ This project works in tandem with the following repositories:
 	<dt><a href="https://github.com/edwinkapkei/apollo-grapqhl-android-tv-show-implementation" target="_blank">Android Client</a></dt>
 	<dd>Client to consume and display Apollo graphql data</dd>
 	</br>
-</dl><br>
+</dl>
 <dd>Every resource is offline with the exception of TVMaze APIs so in order to run the whole project kindly clone the three repositories.</dd>
 <dd>The main thing to take into consideration is the different URLs required for the platforms to interact:</dd>
 <dl>
